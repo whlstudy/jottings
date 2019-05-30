@@ -1,4 +1,4 @@
-package wang.study.leetcode;
+package wang.study.leetcode.dynamic;
 
 public class ClimbingStairs {
     public int climbStairs0(int n){

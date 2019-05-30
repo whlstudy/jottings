@@ -1,4 +1,4 @@
-package wang.study.leetcode;
+package wang.study.leetcode.dynamic;
 
 import org.junit.Test;
 

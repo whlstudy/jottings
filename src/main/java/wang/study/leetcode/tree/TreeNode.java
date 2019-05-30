@@ -1,4 +1,4 @@
-package wang.study.leetcode;
+package wang.study.leetcode.tree;
 
 public class TreeNode {
     int val;
