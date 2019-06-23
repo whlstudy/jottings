@@ -1,4 +1,4 @@
-package wang.study.designpattern.FactoryPattern;
+package wang.study.designpattern.factorypattern;
 
 public class TestDemo {
     public static void main(String[] args) {

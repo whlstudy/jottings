@@ -1,4 +1,4 @@
-package wang.study.designpattern.FactoryPattern;
+package wang.study.designpattern.factorypattern;
 
 public class Circle implements Shape {
     @Override
