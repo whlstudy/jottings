@@ -11,5 +11,6 @@ public class Demo {
         Hello proxy = (Hello)Proxy.newProxyInstance(hello.getClass().getClassLoader(),
                 hello.getClass().getInterfaces(),handler);
         proxy.say("pig");
+        proxy.cry("cat");
     }
 }
