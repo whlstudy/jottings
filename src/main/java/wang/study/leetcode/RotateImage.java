@@ -1,7 +1,5 @@
 package wang.study.leetcode;
 
-import org.junit.Test;
-
 public class RotateImage {
     public void rotate(int[][] matrix) {
         int row = matrix.length-1;
@@ -17,7 +15,9 @@ public class RotateImage {
             }
             target++;
         }
-
+        oprint(matrix);
+    }
+    private void oprint(int[][] matrix){
         for(int i = 0;i <matrix.length;i++){
             for(int j = 0;j < matrix[0].length;j++){
                 System.out.print(matrix[i][j]+" ");
@@ -25,7 +25,6 @@ public class RotateImage {
             System.out.println();
         }
     }
-
     @Test
     public void test(){
         int[][] arr = new int[][]{
