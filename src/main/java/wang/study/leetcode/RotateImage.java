@@ -1,5 +1,7 @@
 package wang.study.leetcode;
 
+import org.junit.Test;
+
 public class RotateImage {
     public void rotate(int[][] matrix) {
         int row = matrix.length-1;
