@@ -33,6 +33,11 @@ public class MyHashMap<K, V> extends AbstractMap<K, V> {
         this(initialCapacity, DEFAULT_LOAD_FACTOR);
     }
 
+    /**
+     * 带参数初始化
+     * @param initialCapacity 大小
+     * @param loadFactor 负载因子
+     */
     public MyHashMap(int initialCapacity, Float loadFactor) {
         if (initialCapacity < 0)
             throw new IllegalArgumentException("Illegal initial capacity:" + initialCapacity);
@@ -82,6 +87,7 @@ public class MyHashMap<K, V> extends AbstractMap<K, V> {
 
     // key 为 null 插入到第一个节点
     private V putForNullKey(V value) {
+        table[0].next = new Node(0,null,value,null);
         return value;
     }
 
@@ -142,6 +148,11 @@ public class MyHashMap<K, V> extends AbstractMap<K, V> {
         }
     }
 
+    /**
+     * hash算法
+     * @param h
+     * @return
+     */
     static int hash(int h) {
         h ^= (h >>> 20) ^ (h >>> 12);
         return h ^ (h >>> 7) ^ (h >>> 4);
@@ -151,6 +162,9 @@ public class MyHashMap<K, V> extends AbstractMap<K, V> {
         return h % (length - 1);
     }
 
+    /**
+     * Returns a power of two size for the given target capacity.
+     */
     static final int tableSizeFor(int cap) {
         int n = cap - 1;
         n |= n >>> 1;
@@ -161,12 +175,17 @@ public class MyHashMap<K, V> extends AbstractMap<K, V> {
         return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
     }
 
-
     @Override
     public Set<Entry<K, V>> entrySet() {
         return null;
     }
 
+
+    /**
+     * 节点
+     * @param <K> key
+     * @param <V> value
+     */
     static class Node<K, V> implements Map.Entry<K, V> {
         final int hash;
         final K key;
