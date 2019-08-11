@@ -1,5 +1,6 @@
 package wang.study.basis.proxy;
 
+import javax.imageio.metadata.IIOInvalidTreeException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
