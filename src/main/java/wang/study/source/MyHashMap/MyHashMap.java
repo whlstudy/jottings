@@ -1,4 +1,4 @@
-package wang.study.source;
+package wang.study.source.MyHashMap;
 
 
 import java.util.*;
