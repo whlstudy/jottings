@@ -1,5 +1,7 @@
 package wang.study.source.BPlusTree;
 
+import java.util.LinkedList;
+
 public class Product {
     private Integer id;
     private String name;
