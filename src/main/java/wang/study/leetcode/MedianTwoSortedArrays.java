@@ -1,44 +1,45 @@
 package wang.study.leetcode;
 
 public class MedianTwoSortedArrays {
-    // this is a waste of space O(n+m)
-    // thinking use none of extra space
+
+    // space O(1) time O(m+n)
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int len1 = nums1.length, len2 = nums2.length;
-        int totalLen = len1 + len2;
-        int htlen = totalLen / 2;
-        int[] comb = new int[totalLen];
-        int tL = totalLen-1,index1=len1-1,index2=len2-1;
-        double res;
-        
-        while (index1 >= 0 && index2 >= 0){
-            if(nums1[index1] >= nums2[index2]){
-                comb[tL] = nums1[index1];
-                index1--;
-            }else {
-                comb[tL] = nums2[index2];
-                index2--;
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+        if (len1 == 0)
+            return len2 % 2 == 0 ? (double) (nums2[len2 / 2 - 1] + nums2[len2 / 2]) / 2 : nums2[len2 / 2 - 1];
+        if (len2 == 0)
+            return len1 % 2 == 0 ? (double) (nums1[len1 / 2 - 1] + nums1[len1 / 2]) / 2 : nums1[len1 / 2 - 1];
+        int mid = (len1 + len2) / 2;
+        int i = 0, j = 0;
+        int pre = 0, cur = 0;
+        while (i + j - 1 != mid) {
+            if (i == len1 ){
+                pre = cur;
+                cur = nums2[j];
+                j++;
+            } else if(j == len2){
+                pre = cur;
+                cur = nums1[i];
+                i++;
+            } else if(nums1[i] <= nums2[j]) {
+                pre = cur;
+                cur = nums1[i];
+                i++;
+            } else {
+                pre = cur;
+                cur = nums2[j];
+                j++;
             }
-            tL--;
         }
-        while (index1>=0){
-            comb[tL--] = nums1[index1--];
-        }
-        while (index2>=0){
-            comb[tL--] = nums2[index2--];
-        }
-        if(totalLen %2 == 0){
-            res = (comb[htlen] + comb[htlen-1])/2.0;
-        }else {
-            res = comb[htlen]/1.0;
-        }
-        return res;
+
+        return (len1 + len2) % 2 == 0 ? (double) (pre + cur) / 2 : pre;
     }
-    
+
     public static void main(String[] args) {
-        int[] arr1 = new int[]{};
-        int[] arr2 = new int[]{3,4};
+        int[] arr1 = new int[]{3};
+        int[] arr2 = new int[]{1};
         System.out.println(findMedianSortedArrays(arr1, arr2));
     }
-    
+
 }

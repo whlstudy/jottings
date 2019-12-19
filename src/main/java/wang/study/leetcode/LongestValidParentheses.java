@@ -2,40 +2,30 @@ package wang.study.leetcode;
 
 import org.junit.Test;
 
-import java.util.Stack;
 
 public class LongestValidParentheses {
-    /**
-     * 遍历速度太慢，超时
-     */
     public int longestValidParentheses(String s) {
-        int maxlen = 0;
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = i + 2; j <= s.length(); j += 2) {
-                if (isValid(s.substring(i, j))) {
-                    maxlen = Math.max(maxlen, j - i);
+        int len = s.length();
+        if (len < 2) return 0;
+        int[] dp = new int[len + 1];
+        int max = 0;
+        for (int i = 2; i <= len; i++) {
+            if (s.charAt(i - 1) == ')') {
+                if (s.charAt(i - 2) == '(') {
+                    dp[i] = dp[i - 2] + 2;
+                } else if (i - dp[i - 1] - 2 >= 0 && s.charAt(i - dp[i - 1] - 2) == '(') {
+                    if (i - dp[i - 1] - 2 >= 0)
+                        dp[i] += dp[i - dp[i - 1] - 2];
+                    dp[i] += dp[i - 1] + 2;
                 }
             }
+            max = Math.max(max, dp[i]);
         }
-        return maxlen;
-    }
-
-    public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
-                stack.push('(');
-            } else if (!stack.empty() && stack.peek() == '(') {
-                stack.pop();
-            } else {
-                return false;
-            }
-        }
-        return stack.empty();
+        return max;
     }
 
     @Test
     public void test() {
-        System.out.println(longestValidParentheses("()(()()"));
+        System.out.println(longestValidParentheses("()(()()))"));
     }
 }
